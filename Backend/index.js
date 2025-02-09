@@ -4,20 +4,26 @@ const bodyParser = require('body-parser');
 
 const DB_connect = require('./Configs/DatabaseConfig')
 
+const route = require('./Routes/PostRoutes')
+
+
 const app = express();
 dotenv.config();
 app.use(bodyParser.json());
 
 
+app.use('/mern-revision/v1',route);
+
 
 app.get('/hello', (req, res) => {
     console.log("hi all fine bro");
-    res.send("nice ji");
+    res.send(`<h1> hi bro </h1>`);
 });
 
 app.listen(3000, () => {
     console.log("Server is running at port 3000");
 });
+
 const URL = process.env.MONGO_URL;
 console.log("hi",URL)
 
