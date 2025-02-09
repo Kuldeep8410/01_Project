@@ -1,10 +1,11 @@
-import { useEffect, useState } from "react";
+// import { useEffect, useState } from "react";
 import LeafImage from '../assets/Leaf_multi.jpg';
 import bellflower from '../assets/bellflower.jpg';
 import flower_dune from '../assets/flower_dune.jpg';
-import white_flowers from '../assets/white-flowers.jpg';
 
-import AOS from "aos";
+// import white_flowers from '../assets/white-flowers.jpg';
+
+// import AOS from "aos";
 
 const Design = () => {
 
@@ -12,22 +13,24 @@ const Design = () => {
     //    AOS.init()
     // },[])
     return (
-        <div className=" flex-row scroll-m-1.5">
-            <div className="relative w-full h-screen">
-                {/* Background Image */}
-                <img className="absolute inset-0 w-full h-full object-cover opacity-100 blur-xs" src={LeafImage} alt="Background" />
+        <>
+        
+            <div className="flex-row scroll-m-1.5">
+                <div className="relative w-full h-screen">
+                    {/* Background Image */}
+                    <img className="absolute inset-0 w-full h-full object-cover opacity-100 blur-xs" src={LeafImage} alt="Background" />
 
-                {/* Content Over Image */}
-                <div className="relative z-10 flex flex-col items-center justify-center h-full text-white text-center  p-6">
-                    <h1 className="text-4xl font-bold">Welcome Bro</h1>
-                    <br />
-                    <p className="max-w-2xl">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores quisquam quo voluptatem
-                        laudantium, rerum provident doloribus corporis quia odit, sint, aperiam ratione suscipit
-                        nam libero vel! Suscipit voluptates sit cumque! Nulla assumenda aperiam veritatis similique
-                        hic! Assumenda, pariatur explicabo laudantium facere nisi error, voluptas dignissimos quae,
-                        officia iure omnis voluptatem!
-                    </p>
+                    {/* Content Over Image */}
+                    <div className="relative z-0 flex flex-col items-center justify-center h-full text-white text-center  p-6">
+                        <h1 className="text-4xl font-bold">Welcome Bro</h1>
+                        <br />
+                        <p className="max-w-2xl">
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores quisquam quo voluptatem
+                            laudantium, rerum provident doloribus corporis quia odit, sint, aperiam ratione suscipit
+                            nam libero vel! Suscipit voluptates sit cumque! Nulla assumenda aperiam veritatis similique
+                            hic! Assumenda, pariatur explicabo laudantium facere nisi error, voluptas dignissimos quae,
+                            officia iure omnis voluptatem!
+                        </p>
                     <a href = "#sign-up" className="z-10 bg-blue-100/35  h-10 p-2 text-black font-bold m-2 fixed insert-0 right-10  bottom-0 rounded-md"
                    >For More Register Please !!</a>
                 </div>
@@ -58,6 +61,7 @@ const Design = () => {
            </div>
 
         </div>
+        </>
     )
 
 }
