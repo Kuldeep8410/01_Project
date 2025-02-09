@@ -76,7 +76,7 @@ function Normaluser() {
                         onChange={changeHandler}
                         required
                     />
-                    <span onClick={() => { SetShowpass(!showpass) }}>
+                    <span onClick={() => { SetShowpass(!showpass) }} className="flex items-center justify-center cursor-pointer">
                         {showpass ? <FaRegEye /> : <FaEyeSlash />}
                     </span>
                 </label>
@@ -92,7 +92,7 @@ function Normaluser() {
                     style={IsPassMatch ? {} : { borderColor: "red", animation: "shake 0.5s", backgroundColor : "red"}}
 
                 />
-                <span onClick={() => { SetconfShowpass(!confshowpass) }}>
+                <span onClick={() => { SetconfShowpass(!confshowpass) }}  className="flex items-center justify-center cursor-pointer">
                         {confshowpass ? <FaRegEye /> : <FaEyeSlash />}
                     </span>
                 </label>
