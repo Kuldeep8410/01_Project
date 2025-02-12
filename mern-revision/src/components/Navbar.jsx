@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { FaBars, FaTimes } from "react-icons/fa"; 
+import {NavLink} from "react-router-dom"
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -13,10 +14,10 @@ const Navbar = () => {
 
         
           <div className="hidden md:flex space-x-5">
-            <a href="#" className="opacity-70 hover:opacity-100 hover:text-xl hover:font-bold">Dashboard</a>
-            <a href="#" className="opacity-70 hover:opacity-100 hover:text-xl hover:font-bold">About</a>
-            <a href="#" className="opacity-70 hover:opacity-100 hover:text-xl hover:font-bold">Projects</a>
-            <a href="#" className="opacity-70 hover:opacity-100 hover:text-xl hover:font-bold">Contact</a>
+            <NavLink to="/"  className="opacity-70 hover:opacity-100 hover:text-xl hover:font-bold">Home</NavLink>
+            <NavLink to="/user-home" className="opacity-70 hover:opacity-100 hover:text-xl hover:font-bold">About</NavLink>
+            <NavLink to="/login" className="opacity-70 hover:opacity-100 hover:text-xl hover:font-bold">Login</NavLink>
+            <NavLink to="/Contact" className="opacity-70 hover:opacity-100 hover:text-xl hover:font-bold">Contact</NavLink>
           </div>
 
          
