@@ -15,7 +15,7 @@ const Design = () => {
     return (
         <>
         
-            <div className="flex-row scroll-m-1.5">
+            <div id="Dashboard" className="flex-row scroll-m-1.5">
                 <div className="relative w-full h-screen">
                     {/* Background Image */}
                     <img className="absolute inset-0 w-full h-full object-cover opacity-100 blur-xs" src={LeafImage} alt="Background" />
