@@ -6,7 +6,16 @@ import MiddlemiddleComp from "./Middle_middle_comp";
 function UserHome() {
 
     const dataFromLocalStorage = localStorage.getItem("userData");
-    const userInfo = dataFromLocalStorage ? JSON.parse(dataFromLocalStorage) : null;
+    let userInfo = dataFromLocalStorage ? JSON.parse(dataFromLocalStorage) : null;
+
+    if(userInfo == null){
+           userInfo = {
+            name : "",
+            email : "",
+            role : "",
+           }
+    }
+    console.log(userInfo)
 
     const middleUper = {
         name : "Gaurav  kumar",

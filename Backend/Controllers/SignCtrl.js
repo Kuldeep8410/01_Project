@@ -31,23 +31,23 @@ const SignupCtrl = async (req, res) => {
 
         
         //send opt function to user
-        const otp = GeneratedOtp();
-        req.session.otp = otp;
+        // const otp = GeneratedOtp();
+        // req.session.otp = otp;
 
-        //email send to user 
-        const responseEmail = await EmailSender(email,otp);
-        if(responseEmail){
-            return res.status(200).json({
-                message : `OTP send Succesfully to ${email}`,
-                success : true
-            })
-        }
-        else if(!responseEmail) {
-            return res.status(500).json({
-                message : "error pleas try again",
-                success : false,
-            })
-        }
+        // //email send to user 
+        // const responseEmail = await EmailSender(email,otp);
+        // if(responseEmail){
+        //     return res.status(200).json({
+        //         message : `OTP send Succesfully to ${email}`,
+        //         success : true
+        //     })
+        // }
+        // else if(!responseEmail) {
+        //     return res.status(500).json({
+        //         message : "error pleas try again",
+        //         success : false,
+        //     })
+        // }
 
 
         //wait for user side otp
