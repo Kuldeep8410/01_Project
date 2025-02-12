@@ -61,7 +61,7 @@ function Signup() {
       )}
     </div>
   );
-=======
+
     const [istrue, setTrue] = useState(false);
     const { loading, setLoading } = useContext(AppContext);
 
