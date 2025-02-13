@@ -1,6 +1,10 @@
 const dotenv = require('dotenv');
 const express = require('express');
 const bodyParser = require('body-parser');
+const cookieParser = require("cookie-parser");
+const cors = require('cors')
+
+
 
 const DB_connect = require('./Configs/DatabaseConfig')
 
@@ -9,9 +13,14 @@ const route = require('./Routes/PostRoutes')
 
 const app = express();
 dotenv.config();
+app.use(
+    cors({
+      origin: "http://localhost:5173", // ✅ Allow only your frontend's origin
+      credentials: true, // ✅ Allow cookies & authentication headers
+    })
+  );
 app.use(bodyParser.json());
-
-
+app.use(cookieParser());
 app.use('/mern-revision/v1',route);
 
 

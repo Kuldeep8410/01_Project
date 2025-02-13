@@ -1,16 +1,26 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import './From.css'
 import { FaRegEye, FaEyeSlash } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
 
-function Login() {
+
+import { AppContext } from "../ContextApi/FisrtContext";
+import { ToastContainer,toast } from "react-toastify";
+import { Navigate, NavLink } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+
+
+
+ function Login() {
     const [showpass, SetShowpass] = useState(false)
+    const {loading, setLoading, SendDataSignLogin,}  = useContext(AppContext);
+    const navigate = useNavigate();
+
     const [NormaluserData, setNormalUserData] = useState({
         username: "",
         email: "",
         password: "",
     });
-
 
     const changeHandler = (event) => {
         const { name, value } = event.target;
@@ -22,11 +32,32 @@ function Login() {
     };
 
     // Handling form submission
-    const submitHandler = (e) => {
+    const submitHandler = async (e) => {
         e.preventDefault();
-        console.log("login form send succes");
-        window.alert("verifying")
+        const response = await SendDataSignLogin('login',NormaluserData);
+        console.log("login form send succes",response);
 
+        //local storage mein save kr rha hu
+
+        localStorage.setItem("userData",JSON.stringify(response));
+
+        if(!response.success){
+            toast.error(response.message);
+        }
+        else if(response.success){
+            toast.success(response.message)
+            if(response.role === 'Admin-user'){
+                //rediredt to admin page 
+                <NavLink to={'/admin-dashboard'} />
+            }
+            if (response.role === "normal-user") {
+
+                setTimeout(() => {
+                  navigate("/user-home"); // ✅ Corrected function usage
+                }, 1000);
+            }
+            //redirect to home page and other page
+        }
     };
     return (
         <div>
@@ -73,6 +104,7 @@ function Login() {
                     </span>
                 </div>
             </form>
+            <ToastContainer />
         </div>
     );
 }

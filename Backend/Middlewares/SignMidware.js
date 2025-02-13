@@ -1,4 +1,5 @@
 const joi = require('joi');
+const jwt = require('jsonwebtoken');
 
 const SignupValid = (req, res, next) => {
     try {
@@ -32,7 +33,8 @@ const SignupValid = (req, res, next) => {
     }
 };
 
-module.exports = SignupValid;
+  module.exports = SignupValid;
+
 //dglkdg
 
 //dfkgj
