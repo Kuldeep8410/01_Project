@@ -4,6 +4,7 @@ const UserModel = require('../Models/UserSchema');
 const GeneratedOtp = require('./OtpGenerator');
 const EmailSender = require('./EmailToUser');
 
+const client = require('../client');
 
 
 const SignupCtrl = async (req, res) => {
@@ -31,27 +32,18 @@ const SignupCtrl = async (req, res) => {
 
         
         //send opt function to user
-        // const otp = GeneratedOtp();
-        // req.session.otp = otp;
 
-        // //email send to user 
-        // const responseEmail = await EmailSender(email,otp);
-        // if(responseEmail){
-        //     return res.status(200).json({
-        //         message : `OTP send Succesfully to ${email}`,
-        //         success : true
-        //     })
-        // }
-        // else if(!responseEmail) {
-        //     return res.status(500).json({
-        //         message : "error pleas try again",
-        //         success : false,
-        //     })
-        // }
+        const otp = GeneratedOtp();
+        // console.log("generated otp", otp);
+        const saveOtp_to_redis =await client.set(`otp:${email}`, otp); //ise save krna hai in redis db
+
+        // console.log("otp saved to redis", saveOtp_to_redis);
+
+        //email send to user 
+        
 
 
         //wait for user side otp
-
         // encrypt the password
         //salt generation
         const saltRounds = 10;
@@ -63,17 +55,31 @@ const SignupCtrl = async (req, res) => {
             console.log("Encrypted Password:", hashpass);
 
             //database model document
-            const dataToSave = new UserModel({
+            const dataToSave = {
                 username,
                 email,
                 password : hashpass,
                 role,
-            });
-            await dataToSave.save();
-            res.status(201).json({ message: "User registered successfully!", user: dataToSave });
+            };
+            await client.set(`data:${email}`, JSON.stringify(dataToSave))
+            res.status(201).json({ message: "User Otp Send to mail successfully!", user: dataToSave });
 
         } catch (error) {
             res.status(500).json({ message: "Error encrypting password", success: false, error });
+        }
+
+        const responseEmail = await EmailSender(email,otp);
+        if(responseEmail){
+            return res.status(200).json({
+                message : `OTP send Succesfully to ${email}`,
+                success : true
+            })
+        }
+        else if(!responseEmail) {
+            return res.status(500).json({
+                message : "error pleas try again",
+                success : false,
+            })
         }
 
 
