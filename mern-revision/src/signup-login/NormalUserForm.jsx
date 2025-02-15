@@ -9,10 +9,16 @@ import HashLoader from 'react-spinners/HashLoader'
 import { ToastContainer, toast } from 'react-toastify'
 import { NavLink, useNavigate } from "react-router-dom";
 
+import LoginButton from "../Google Auth/Login";
+import { useAuth0 } from "@auth0/auth0-react";
+
 
 
 function Normaluser() {
     const navigate = useNavigate();
+    const googleAuth = useAuth0();
+
+    console.log("google data",googleAuth);
 
     const [showpass, SetShowpass] = useState(false)
     const [confshowpass, SetconfShowpass] = useState(false)
@@ -165,7 +171,7 @@ function Normaluser() {
                 </span>
 
                 <span className="flex flex-row gap-2 border-2 border-blue-700 rounded-md justify-center items-center p-1 mt-2 text-white hover:bg-amber-800/50 cursor-pointer w-auto">
-                    {<FcGoogle size={30} />} <h2> signup with google </h2>
+                    {<FcGoogle size={30} />} <h2> {<LoginButton />}</h2>
                 </span>
             </form>
             <ToastContainer />

@@ -2,8 +2,10 @@ import { useState } from "react";
 import { FaBars, FaTimes } from "react-icons/fa"; 
 import {NavLink} from "react-router-dom"
 import Logout from "./Logout";
+import LogoutButton from "../Google Auth/Logout";
 
 const Navbar = () => {
+  
   const [isOpen, setIsOpen] = useState(false);
 
   const localData = localStorage.getItem("userData");
@@ -25,7 +27,9 @@ const Navbar = () => {
       <div className="max-w-5xl mx-auto px-4">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <span className="text-2xl font-semibold opacity-80">Logo</span>
+          <span className="text-2xl font-semibold opacity-80">Logo
+            <h1>{<LogoutButton />}</h1>
+          </span>
 
         
           <div className="hidden md:flex space-x-5">

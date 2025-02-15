@@ -8,7 +8,7 @@ import { AppContext } from "../ContextApi/FisrtContext";
 import { ToastContainer,toast } from "react-toastify";
 import { Navigate, NavLink } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-
+import LoginButton from "../Google Auth/Login";
 
 
  function Login() {
@@ -100,7 +100,7 @@ import { useNavigate } from "react-router-dom";
                     <button type="submit">Login</button>
                     
                     <span className="flex flex-row gap-2 border-2 rounded-md justify-center items-center p-1 text-white hover:bg-amber-800/50 cursor-pointer">
-                   {<FcGoogle size={30} /> } <h2> login with google </h2>
+                   {<FcGoogle size={30} /> } <h2>{<LoginButton />}</h2>
                     </span>
                 </div>
             </form>

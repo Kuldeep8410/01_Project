@@ -5,7 +5,7 @@ import { ToastContainer, toast } from "react-toastify";
 
 
 function Adminuser() {
-  
+
 
   const { loading, setLoading, SendDataSignLogin, } = useContext(AppContext)
   const navigate = useNavigate();
@@ -17,10 +17,10 @@ function Adminuser() {
     password: "",
     contact: "",
     gender: "",
-    role: "Admin-user", 
+    role: "Admin-user",
   });
 
- 
+
   const changeHandler = (event) => {
     const { name, value } = event.target;
     setNormalUserData((prevData) => ({
@@ -31,27 +31,30 @@ function Adminuser() {
 
 
   const NewObject = {
-    username : NormaluserData.username,
-    email : NormaluserData.email,
-    password : NormaluserData.password,
-    role : NormaluserData.role,
+    username: NormaluserData.username,
+    email: NormaluserData.email,
+    password: NormaluserData.password,
+    role: NormaluserData.role,
   }
 
 
   //saving email to local storage then delete imediately after varification
-  localStorage.setItem("useremail",NormaluserData.email);
+  localStorage.setItem("useremail", NormaluserData.email);
 
   // Handling form submission
   const submitHandler = async (e) => {
     e.preventDefault();
     const response = await SendDataSignLogin("signup", NewObject);
-    setTimeout( ()=>{
-      navigate('/otpvarification')
-    },1000)
-    toast.success(response.message)
+    if (response.success) {
+      toast.success(response.message);
+      setTimeout(() => {
+        navigate('/otpvarification')
+      }, 1000)
+    }
+    if(!response.success)toast.error(response.message)
 
-    // console.log("response for admin: ",response);
-    // console.log("Your form data saved successfully", NormaluserData);
+    console.log("response for admin: ", response);
+    console.log("Your form data saved successfully", NormaluserData);
   };
 
 
